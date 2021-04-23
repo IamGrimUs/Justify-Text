@@ -1,22 +1,21 @@
 import * as React from 'react'
-import {TextBox} from './components/text-box'
-import './App.css';
 
-const {useState} = React
+const { useState } = React
 
-export const App = () => {
-  const [boxWidth, setBoxWidth] = useState(480)
-  const [boxText, setBoxText] = useState('The quick brown fox jumps over the lazy dog.')
+export const useNumberInput = (widthLabel, defaultWidthState, textLabel, defaultTextState) => {
+  const [boxWidth, setBoxWidth] = useState(defaultWidthState)
+  const [boxText, setBoxText] = useState(defaultTextState)
 
-  return (
+  const FormInputs = () => {
+    return (
       <div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
-          <label htmlFor="boxWidth">
-            Width of Text Box
+            <label htmlFor="boxWidth">
+              { widthLabel }
             <input
               id="boxWidth"
               value={boxWidth}
@@ -24,8 +23,8 @@ export const App = () => {
               onChange={(e) => setBoxWidth(e.target.value)}
               onBlur={(e) => setBoxWidth(e.target.value)} />
           </label>
-          <label htmlFor="boxText">
-            Text for justification
+            <label htmlFor="boxText">
+              { textLabel }
             <textarea
               id="boxText"
               value={boxText}
@@ -34,7 +33,10 @@ export const App = () => {
               onBlur={(e) => setBoxText(e.target.value)} />
           </label>
         </form>
-        <TextBox boxWidth={boxWidth} boxText={boxText} />
       </div>
     )
   }
+
+  return [boxWidth, FormInputs, setBoxWidth, boxText, setBoxText]
+
+}

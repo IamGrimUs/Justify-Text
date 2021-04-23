@@ -1,12 +1,10 @@
 import * as React from 'react'
-import {TextBox} from './components/text-box'
-import './App.css';
 
-const {useState} = React
+const { useState } = React
 
-export const App = () => {
-  const [boxWidth, setBoxWidth] = useState(480)
-  const [boxText, setBoxText] = useState('The quick brown fox jumps over the lazy dog.')
+export const Form = ({ widthLabel, defaultWidthState, textLabel, defaultTextState }) => {
+  const [boxWidth, setBoxWidth] = useState(defaultWidthState)
+  const [boxText, setBoxText] = useState(defaultTextState)
 
   return (
       <div>
@@ -16,7 +14,7 @@ export const App = () => {
           }}
         >
           <label htmlFor="boxWidth">
-            Width of Text Box
+            { widthLabel }
             <input
               id="boxWidth"
               value={boxWidth}
@@ -25,7 +23,7 @@ export const App = () => {
               onBlur={(e) => setBoxWidth(e.target.value)} />
           </label>
           <label htmlFor="boxText">
-            Text for justification
+            { textLabel }
             <textarea
               id="boxText"
               value={boxText}
@@ -34,7 +32,6 @@ export const App = () => {
               onBlur={(e) => setBoxText(e.target.value)} />
           </label>
         </form>
-        <TextBox boxWidth={boxWidth} boxText={boxText} />
       </div>
     )
   }
