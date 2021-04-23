@@ -22,7 +22,6 @@ export const TextBox = ({ boxWidth, boxText }) => {
 
     let count = 0
     let position = 0
-    let loop = 0
 
     while (count < tempArray.length + spacesToAdd ) {
       if (position < tempArray.length - 1) {
@@ -32,7 +31,6 @@ export const TextBox = ({ boxWidth, boxText }) => {
         count++
       } else {
         position = 0
-        loop++
       }
     }
     return <pre>{tempArray}</pre>
